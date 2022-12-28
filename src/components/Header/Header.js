@@ -4,19 +4,26 @@ import { FaSun, FaMoon } from 'react-icons/fa';
 
 
 const Header = () => {
+
+    /* set dark false here */
     const [isDark, setIsDark] = useState(false)
     const handleDarkMode = () => {
+        /* Set dark boolean value in local-storage */
         localStorage.setItem('theme-color', !isDark)
+        /* Change value */
         setIsDark(!isDark)
 
     }
     useEffect(() => {
+        /* Get value from local-storage */
         const checkDark = localStorage.getItem('theme-color')
+        /* Check dark true or false */
         if (checkDark === 'true') {
+            /*If true add dark class */
             document.documentElement.classList.add('dark')
             setIsDark(true)
-            console.log('add class')
         } if (checkDark === 'false') {
+            /* If false remove dark class */
             document.documentElement.classList.remove('dark')
         }
     }, [isDark])

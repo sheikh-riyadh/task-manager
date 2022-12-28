@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import AddTask from "../components/AddTast/AddTask";
 import CompletedTask from "../components/CompletedTask/CompletedTask";
-import MyTask from "../components/MyTask/MyTask";
+import MyTask from "../components/MyTasks/MyTasks";
 import Main from "../layout/Main";
 
 export const router = createBrowserRouter([
