@@ -30,7 +30,8 @@ const AddTask = () => {
                 const imageURL = data?.data?.display_url;
                 const addTask = {
                     task,
-                    imageURL
+                    imageURL,
+                    isCompleted: false
                 }
 
                 /* save add task on database here */
