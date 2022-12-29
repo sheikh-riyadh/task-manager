@@ -24,7 +24,7 @@ const SingleCompletedTask = ({ completedTask, handleDelete, handleNotCompleted, 
             {
                 completedTask.comments?.map((comment, index) => <p
                     key={index}
-                    className='dark:border dark:border-slate-700 dark:text-slate-200 rounded-full text-gray-900 p-2 m-2'
+                    className='border border-slate-700 dark:text-slate-200 rounded-full text-gray-900 p-3 m-2'
                 >{comment}</p>)
             }
             <div className='flex'>
