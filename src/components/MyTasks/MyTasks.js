@@ -4,16 +4,13 @@ import { toast } from 'react-hot-toast';
 import SingleTask from './SingleTask';
 
 const MyTasks = () => {
-
     const { data: tasks, isLoading, refetch } = useQuery({
         queryKey: ['my-task'],
         queryFn: () => fetch(`${process.env.REACT_APP_api_url}/my-task`).then(res => res.json()).then(data => data)
     })
 
-
-
-    const handleUpdate = (id) => {
-
+    /* Handle task completed here */
+    const handleTaskComplete = (id) => {
         fetch(`${process.env.REACT_APP_api_url}/my-task/${id}`, {
             method: 'PUT'
         }).then(res => res.json()).then(data => {
@@ -41,8 +38,6 @@ const MyTasks = () => {
         }
     }
 
-
-
     if (isLoading) {
         return <div role="status" className='flex justify-center my-16'>
             <svg className="inline mr-2 w-10 h-10 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -60,7 +55,7 @@ const MyTasks = () => {
                         key={myTask._id}
                         myTask={myTask}
                         handleDelete={handleDelete}
-                        handleUpdate={handleUpdate}
+                        handleTaskComplete={handleTaskComplete}
                     ></SingleTask>)
                 }
             </div>

@@ -1,7 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 import AddTask from "../components/AddTast/AddTask";
 import CompletedTask from "../components/CompletedTask/CompletedTask";
+import FourOFour from "../components/FourOFour/FourOFour";
 import MyTask from "../components/MyTasks/MyTasks";
+import UpdateTask from "../components/UpdateTask/UpdateTask";
 import Main from "../layout/Main";
 
 export const router = createBrowserRouter([
@@ -18,7 +20,15 @@ export const router = createBrowserRouter([
             }, {
                 path: '/completed-task',
                 element: <CompletedTask></CompletedTask>
+            }, {
+                path: '/update-task/:id',
+                element: <UpdateTask></UpdateTask>,
+                loader: ({ params }) => fetch(`${process.env.REACT_APP_api_url}/my-task/${params.id}`)
+            }, {
+                path: '*',
+                element: <FourOFour></FourOFour>
             }
         ]
+
     }
 ])
