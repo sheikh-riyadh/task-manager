@@ -1,6 +1,7 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import SingleCompletedTask from './SingleCompletedTask';
+import { toast } from 'react-hot-toast';
 
 const CompletedTask = () => {
     const { data: completedTasks, refetch, isLoading } = useQuery({
@@ -16,11 +17,63 @@ const CompletedTask = () => {
             <span className="sr-only">Loading...</span>
         </div>
     }
-    return (
-        <div className='my-12'>
 
-            <div className='lg:w-6/12 mx-auto'>
-                {completedTasks.length === 0 && <>
+
+    const handleNotCompleted = (id) => {
+        fetch(`${process.env.REACT_APP_api_url}/incomplete/${id}`, {
+            method: 'PUT'
+        }).then(res => res.json()).then(data => {
+            if (data.acknowledged || data.modifiedCount > 0) {
+                refetch()
+            }
+        })
+    }
+
+    const handleDelete = (id) => {
+        const agree = window.confirm("Are you sure you want to delete?")
+        if (agree) {
+            fetch(`${process.env.REACT_APP_api_url}/my-task/${id}`, {
+                method: 'DELETE'
+            }).then(res => res.json()).then(data => {
+                if (data.deletedCount > 0) {
+                    toast.success('Task deleted successfully')
+                    refetch()
+                }
+            })
+        }
+    }
+
+    const handleComment = (userComment, id) => {
+        fetch(`${process.env.REACT_APP_api_url}/comment`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                userComment,
+                id
+            })
+        }).then(res => res.json()).then(data => {
+            if (data.acknowledged || data.modifiedCount > 0) {
+                refetch()
+            }
+        })
+    }
+
+
+    return (
+        <div className='lg:w-5/12 mx-auto my-24'>
+            {
+                completedTasks?.map(completedTask => <SingleCompletedTask
+                    key={completedTask._id}
+                    completedTask={completedTask}
+                    handleNotCompleted={handleNotCompleted}
+                    handleDelete={handleDelete}
+                    handleComment={handleComment}
+                ></SingleCompletedTask>)
+            }
+            <div>
+                {completedTasks?.length === 0 && <>
                     <p className='uppercase lg:text-4xl text-center font-bold mb-12'>Completed tasks not found</p>
                     <img className='w-full' src="not_found.svg" alt="task_image" />
                 </>}

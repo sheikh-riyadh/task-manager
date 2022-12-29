@@ -47,7 +47,7 @@ const MyTasks = () => {
         </div>
     }
     return (
-        <div className='w-11/12 mx-auto my-12'>
+        <div className='w-11/12 mx-auto my-24'>
             <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
                 {
                     tasks?.map((myTask) => <SingleTask
