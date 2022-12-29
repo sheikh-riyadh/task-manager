@@ -57,7 +57,7 @@ const AddTask = () => {
 
 
     return (
-        <div className='w-6/12 mx-auto shadow-lg p-12 my-12 dark:bg-gray-900 rounded-xl bg-white'>
+        <div className='lg:w-6/12 mx-auto shadow-lg p-12 my-12 dark:bg-gray-900 rounded-xl bg-white'>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="mb-6">
                     <label htmlFor="message" className="uppercase text-2xl font-bold block mb-5 text-gray-900 dark:text-white">What is your plan today?</label>

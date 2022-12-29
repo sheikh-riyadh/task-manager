@@ -37,7 +37,6 @@ const MyTasks = () => {
             })
         }
     }
-
     if (isLoading) {
         return <div role="status" className='flex justify-center my-16'>
             <svg className="inline mr-2 w-10 h-10 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -58,6 +57,12 @@ const MyTasks = () => {
                         handleTaskComplete={handleTaskComplete}
                     ></SingleTask>)
                 }
+            </div>
+            <div className='lg:w-6/12 mx-auto'>
+                {tasks.length === 0 && <>
+                    <p className='uppercase lg:text-4xl text-center font-bold mb-12'>tasks not found</p>
+                    <img className='w-full' src="not_found.svg" alt="task_image" />
+                </>}
             </div>
         </div>
     );
