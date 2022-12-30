@@ -3,6 +3,7 @@ import AddTask from "../components/AddTast/AddTask";
 import CompletedTask from "../components/CompletedTask/CompletedTask";
 import Details from "../components/Details/Details";
 import FourOFour from "../components/FourOFour/FourOFour";
+import Login from "../components/Login/Login";
 import MyTask from "../components/MyTasks/MyTasks";
 import UpdateTask from "../components/UpdateTask/UpdateTask";
 import Main from "../layout/Main";
@@ -28,6 +29,9 @@ export const router = createBrowserRouter([
             }, {
                 path: '/task-details',
                 element: <Details></Details>
+            }, {
+                path: '/login',
+                element: <Login></Login>
             }, {
                 path: '*',
                 element: <FourOFour></FourOFour>
