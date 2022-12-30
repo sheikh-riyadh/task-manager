@@ -49,6 +49,9 @@ const Header = () => {
                         <li>
                             <Link to="/completed-task" className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Completed task</Link>
                         </li>
+                        <li>
+                            <Link to="/task-details" className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Task details</Link>
+                        </li>
                         <li onClick={handleDarkMode} className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 cursor-pointer dark:hover:text-white md:dark:hover:bg-transparent">
                             {
                                 isDark ? <FaSun className='text-2xl'></FaSun> : <FaMoon className='text-2xl'></FaMoon>
