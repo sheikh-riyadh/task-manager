@@ -2,13 +2,17 @@ import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext } from 'react';
 import { toast } from 'react-hot-toast';
 import { FaGoogle } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 const googleProvider = new GoogleAuthProvider()
 
 const Login = () => {
 
     const { signInUser, signInWithGoogle } = useContext(AuthContext)
+    const location = useLocation()
+    let navigate = useNavigate();
+    let from = location.state?.from?.pathname || "/";
+
 
     const handleSubmit = (event) => {
         event.preventDefault()
@@ -17,6 +21,7 @@ const Login = () => {
         const password = form.password.value;
         signInUser(email, password).then(() => {
             toast.success("Login successfull")
+            navigate(from, { replace: true });
             form.reset()
         }).catch(error => {
             if (error.message === 'Firebase: Error (auth/wrong-password).') {
@@ -30,8 +35,7 @@ const Login = () => {
 
     const signInWithGoogleProvider = () => {
         signInWithGoogle(googleProvider).then((res) => {
-            const user = res.user;
-            console.log(user)
+            navigate(from, { replace: true });
         }).catch(error => console.log(error))
     }
     return (

@@ -8,6 +8,7 @@ import Register from "../components/Login/Register";
 import MyTask from "../components/MyTasks/MyTasks";
 import UpdateTask from "../components/UpdateTask/UpdateTask";
 import Main from "../layout/Main";
+import PrivateRouter from "./PrivateRouter";
 
 export const router = createBrowserRouter([
     {
@@ -29,7 +30,7 @@ export const router = createBrowserRouter([
                 loader: ({ params }) => fetch(`${process.env.REACT_APP_api_url}/my-task/${params.id}`)
             }, {
                 path: '/task-details',
-                element: <Details></Details>
+                element: <PrivateRouter><Details></Details></PrivateRouter>
             }, {
                 path: '/login',
                 element: <Login></Login>
